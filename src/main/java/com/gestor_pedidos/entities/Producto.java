@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
+@ToString
 public class Producto extends Base {
 
     private String nombre;

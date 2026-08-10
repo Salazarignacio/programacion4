@@ -4,7 +4,9 @@ import com.gestor_pedidos.enums.Estado;
 import com.gestor_pedidos.enums.FormaPago;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 import java.time.LocalDate;
@@ -13,6 +15,8 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
+@Getter
+@Setter
 public class Pedido extends Base implements Calculable {
     private LocalDate fecha;
     private Estado estado;
@@ -22,10 +26,10 @@ public class Pedido extends Base implements Calculable {
     private Usuario usuario;
     private static Set<DetallePedido> detallePedido = new HashSet<>();
 
-    public Pedido( Estado estado, FormaPago formaPago, Usuario usuario) {
+    public Pedido(FormaPago formaPago, Usuario usuario) {
         super();
         this.fecha = LocalDate.now();
-        this.estado = estado;
+        this.estado = Estado.PENDIENTE;
         this.formaPago = formaPago;
         this.usuario = usuario;
 
@@ -36,12 +40,12 @@ public class Pedido extends Base implements Calculable {
         detallePedido.add(nuevoDetalle);
     }
 
-public void calcularTotal(){
-    Double total = 0.0;
+    public void calcularTotal() {
+        Double total = 0.0;
         for (DetallePedido detalle : detallePedido) {
-        total = total + detalle.getSubtotal();
+            total = total + detalle.getSubtotal();
+        }
+        System.out.println("Total $" + total);
     }
-    System.out.println("Total $" + total);
-}
 
 }
