@@ -2,11 +2,14 @@ package com.gestor_pedidos.entities;
 
 import jakarta.persistence.Entity;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 public class Categoria extends Base {
     private String nombre;
     private String descripcion;
