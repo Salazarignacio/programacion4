@@ -12,6 +12,7 @@ import com.gestor_pedidos.enums.Rol;
 import com.gestor_pedidos.pedido.PedidoDTO;
 import com.gestor_pedidos.producto.ProductoCreate;
 import com.gestor_pedidos.producto.ProductoDTO;
+import com.gestor_pedidos.usuario.UsuarioCreate;
 import com.gestor_pedidos.usuario.UsuarioDTO;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -22,16 +23,40 @@ public class GestorPedidosApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GestorPedidosApplication.class, args);
+        Usuario usuario1 = new Usuario("Ignacio", "Salazar", "ignaciosalazar@gmail.com", "3416050505", "123abc", Rol.ADMIN);
+        Usuario usuario2 = new Usuario("Florencia", "Campora", "florcampora@gmail.com", "3416050505", "zxy789", Rol.USUARIO);
+
         UsuarioDTO usuarioDTO1 = new UsuarioDTO("Ignacio", "Salazar", "ignaciosalazar@gmail.com", "3416050505", "123abc", Rol.ADMIN);
         UsuarioDTO usuarioDTO2 = new UsuarioDTO("Florencia", "Campora", "florcampora@gmail.com", "3416050505", "zxy789", Rol.USUARIO);
 
-        CategoriaDTO categoriaDTO1 = new CategoriaDTO("Categoria 1", "Primera categoria");
-        CategoriaDTO categoriaDTO2 = new CategoriaDTO("Categoria 2", "Segunda categoria");
-        CategoriaDTO categoriaDTO3 = new CategoriaDTO("Categoria 3", "Tercera categoria");
+        Categoria categoria1 = new Categoria("Categoria 1", "Primera categoria");
+        Categoria categoria2 = new Categoria("Categoria 2", "Segunda categoria");
+        Categoria categoria3 = new Categoria("Categoria 3", "Tercera categoria");
 
-        ProductoDTO productoDTO1 = new ProductoDTO("producto 1", 1100.00,"descripcion 1", 1, "imagen1.jpg", true, categoriaDTO1);
+        Producto producto1 = new Producto("producto 1", 1100.00, "descripcion 1", 1, "imagen1.jpg", true, categoria1);
+        Producto producto2 = new Producto("producto 2", 1250.00, "descripcion 2", 2, "imagen2.jpg", true, categoria2);
+        Producto producto3 = new Producto("producto 3", 1500.00, "descripcion 3", 3, "imagen3.jpg", true, categoria3);
+        Producto producto4 = new Producto("producto 4", 1750.00, "descripcion 4", 4, "imagen4.jpg", true, categoria1);
+        Producto producto5 = new Producto("producto 5", 2000.00, "descripcion 5", 5, "imagen5.jpg", true, categoria2);
+        Producto producto6 = new Producto("producto 6", 2250.00, "descripcion 6", 6, "imagen6.jpg", true, categoria3);
+        Producto producto7 = new Producto("producto 7", 2500.00, "descripcion 7", 7, "imagen7.jpg", true, categoria1);
+        Producto producto8 = new Producto("producto 8", 2750.00, "descripcion 8", 8, "imagen8.jpg", true, categoria2);
+        Producto producto9 = new Producto("producto 9", 3000.00, "descripcion 9", 9, "imagen9.jpg", true, categoria3);
+        Producto producto10 = new Producto("producto 10", 3400.00, "descripcion 10", 10, "imagen10.jpg", true, categoria3);
 
+        Pedido pedido1 = new Pedido(FormaPago.EFECTIVO, usuario1);
+        Pedido pedido2 = new Pedido(FormaPago.TARJETA, usuario2);
+        Pedido pedido3 = new Pedido(FormaPago.TRANSFERENCIA, usuario2);
+        pedido1.addDetallePedido(2, producto1);
+        pedido1.addDetallePedido(3, producto3);
+        pedido2.addDetallePedido(1, producto2);
+        pedido2.addDetallePedido(2, producto7);
+        pedido3.addDetallePedido(2, producto1);
+        pedido3.addDetallePedido(5, producto9);
 
+        PedidoDTO pedidoDTO1 = new PedidoDTO(FormaPago.EFECTIVO, usuarioDTO1);
+        PedidoDTO pedidoDTO2 = new PedidoDTO(FormaPago.EFECTIVO, usuarioDTO1);
+        PedidoDTO pedidoDTO3 = new PedidoDTO(FormaPago.EFECTIVO, usuarioDTO1);
     }
 
 }

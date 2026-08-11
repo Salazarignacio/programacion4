@@ -18,7 +18,7 @@ public record UsuarioEdit(String nombre, String apellido, String mail, String ce
             usuario.setCelular(celular);
         }
         if (contrasenia != null) {
-            usuario.setContasenia(contrasenia);
+            usuario.setContrasenia(contrasenia);
         }
         if (rol != null) {
             usuario.setRol(rol);

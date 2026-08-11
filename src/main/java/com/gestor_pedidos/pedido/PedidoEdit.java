@@ -6,11 +6,12 @@ import com.gestor_pedidos.enums.FormaPago;
 
 public record PedidoEdit(FormaPago formaPago, Usuario usuario) {
     public void applyTo(Pedido pedido) {
-        if (pedido.getFormaPago() != null) {
+        if (formaPago != null) {
             pedido.setFormaPago(formaPago);
         }
-        if (pedido.getUsuario() != null) {
+        if (usuario != null) {
             pedido.setUsuario(usuario);
         }
     }
 }
+

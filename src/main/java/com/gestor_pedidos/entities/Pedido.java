@@ -2,8 +2,7 @@ package com.gestor_pedidos.entities;
 
 import com.gestor_pedidos.enums.Estado;
 import com.gestor_pedidos.enums.FormaPago;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,12 +18,15 @@ import java.util.Set;
 @Setter
 public class Pedido extends Base implements Calculable {
     private LocalDate fecha;
+    @Enumerated(EnumType.STRING)
     private Estado estado;
     private Double total;
+    @Enumerated(EnumType.STRING)
     private FormaPago formaPago;
     @ManyToOne
     private Usuario usuario;
-    private static Set<DetallePedido> detallePedido = new HashSet<>();
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<DetallePedido> detallePedido = new HashSet<>();
 
     public Pedido(FormaPago formaPago, Usuario usuario) {
         super();
@@ -38,6 +40,14 @@ public class Pedido extends Base implements Calculable {
     public void addDetallePedido(int cantidad, Producto producto) {
         DetallePedido nuevoDetalle = new DetallePedido(cantidad, producto);
         detallePedido.add(nuevoDetalle);
+        nuevoDetalle.setPedido(this);
+    }
+
+    public DetallePedido findDetallePedidoByProducto(Producto prod){
+        return null;
+    }
+    public void deleteDetallePedidoByProducto(Producto prod){
+
     }
 
     public void calcularTotal() {
