@@ -54,6 +54,8 @@ public class GestorPedidosApplication {
         pedido3.addDetallePedido(6, producto8);
 
         pedido3.calcularTotal();
+        pedido1.findDetallePedidoByProducto(producto1);
+        pedido1.findDetallePedidoByProducto(producto4);
 
     }
 
