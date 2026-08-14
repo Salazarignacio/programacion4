@@ -45,14 +45,27 @@ public class Pedido extends Base implements Calculable {
     }
 
     public DetallePedido findDetallePedidoByProducto(Producto prod){
+        for(DetallePedido det : detallePedido){
+            if (det.getProducto().equals(prod)) {
+                System.out.println("Detalle Pedido Encontrado:  ");
+                System.out.println(det);
+                return det;
+            }
+        }
+        System.out.println("No se encontro Detalle Pedido");
         return null;
     }
     public void deleteDetallePedidoByProducto(Producto prod){
+        DetallePedido detalle= findDetallePedidoByProducto(prod);
+        if(detalle != null){
+            detallePedido.remove(detalle);
+            detalle.setPedido(null);
+        }
 
     }
 
     public void calcularTotal() {
-        Double total = 0.0;
+        this.total = 0.0;
         for (DetallePedido detalle : detallePedido) {
             total = total + detalle.getSubtotal();
         }
