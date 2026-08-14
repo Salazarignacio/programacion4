@@ -41,6 +41,7 @@ public class Pedido extends Base implements Calculable {
         DetallePedido nuevoDetalle = new DetallePedido(cantidad, producto);
         detallePedido.add(nuevoDetalle);
         nuevoDetalle.setPedido(this);
+        calcularTotal();
     }
 
     public DetallePedido findDetallePedidoByProducto(Producto prod){
