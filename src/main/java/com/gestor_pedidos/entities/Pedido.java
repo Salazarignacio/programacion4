@@ -27,6 +27,7 @@ public class Pedido extends Base implements Calculable {
     private Usuario usuario;
     @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<DetallePedido> detallePedido = new HashSet<>();
+    private Boolean eliminado;
 
     public Pedido(FormaPago formaPago, Usuario usuario) {
         super();
@@ -34,7 +35,6 @@ public class Pedido extends Base implements Calculable {
         this.estado = Estado.PENDIENTE;
         this.formaPago = formaPago;
         this.usuario = usuario;
-
     }
 
     public void addDetallePedido(int cantidad, Producto producto) {
