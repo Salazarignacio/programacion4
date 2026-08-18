@@ -26,7 +26,6 @@ public class GestorPedidosApplication {
         UsuarioCreate usuario1 = new UsuarioCreate("Ignacio", "Salazar", "ignaciosalazar@gmail.com", "3416050505", "123abc", Rol.ADMIN);
         UsuarioCreate usuario2 = new UsuarioCreate("Florencia", "Campora", "florcampora@gmail.com", "3416050505", "zxy789", Rol.USUARIO);
 
-
         Categoria categoria1 = new CategoriaCreate("Categoria 1", "Primera categoria").toEntity();
         Categoria categoria2 = new CategoriaCreate("Categoria 2", "Segunda categoria").toEntity();
         Categoria categoria3 = new CategoriaCreate("Categoria 3", "Tercera categoria").toEntity();

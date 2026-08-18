@@ -1,6 +1,7 @@
 package com.gestor_pedidos.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,6 +16,7 @@ public class DetallePedido extends Base {
     @ManyToOne
     private Producto producto;
     @ManyToOne
+    @JoinColumn(name = "detalle_pedido")
     private Pedido pedido;
     private Double subtotal;
 
