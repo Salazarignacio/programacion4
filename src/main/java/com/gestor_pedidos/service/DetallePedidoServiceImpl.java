@@ -5,9 +5,11 @@ import com.gestor_pedidos.detallePedido.DetallePedidoDTO;
 import com.gestor_pedidos.entities.DetallePedido;
 import com.gestor_pedidos.repository.DetallePedidoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 @AllArgsConstructor
 public class DetallePedidoServiceImpl implements DetallePedidoService{
     private final DetallePedidoRepository detallePedidoRepository;

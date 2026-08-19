@@ -5,15 +5,16 @@ import com.gestor_pedidos.categoria.CategoriaDTO;
 import com.gestor_pedidos.categoria.CategoriaEdit;
 import com.gestor_pedidos.entities.Categoria;
 import com.gestor_pedidos.repository.CategoriaRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
+@Service
+@AllArgsConstructor
 public class CategoriaServiceImpl implements CategoriaService {
     private final CategoriaRepository categoriaRepository;
-
-    public  CategoriaServiceImpl(CategoriaRepository categoriaRepository) {
-        this.categoriaRepository = categoriaRepository;
-    }
 
     @Override
     public CategoriaDTO save(CategoriaCreate categoriaCreate) {
@@ -28,7 +29,7 @@ public class CategoriaServiceImpl implements CategoriaService {
     }
     @Override
     public List<CategoriaDTO> findAll() {
-        List<CategoriaDTO> categoriasDTO = null;
+        List<CategoriaDTO> categoriasDTO = new ArrayList<>();
         List<Categoria> categorias = categoriaRepository.findAll();
         for(Categoria cat : categorias){
             categoriasDTO.add(CategoriaDTO.toDTO(cat));

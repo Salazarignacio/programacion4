@@ -6,15 +6,15 @@ import com.gestor_pedidos.repository.UsuarioRepository;
 import com.gestor_pedidos.usuario.UsuarioCreate;
 import com.gestor_pedidos.usuario.UsuarioDTO;
 import com.gestor_pedidos.usuario.UsuarioEdit;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@AllArgsConstructor
+@Service
 public class UsuarioServiceImpl implements UsuarioService{
     private final UsuarioRepository usuarioRepository;
-
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepository) {
-        this.usuarioRepository = usuarioRepository;
-    }
 
     @Override
     public UsuarioDTO save(UsuarioCreate usuarioCreate){

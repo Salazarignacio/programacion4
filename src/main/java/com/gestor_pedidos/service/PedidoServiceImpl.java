@@ -7,10 +7,12 @@ import com.gestor_pedidos.pedido.PedidoDTO;
 import com.gestor_pedidos.repository.PedidoRepository;
 import com.gestor_pedidos.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Service
 public class PedidoServiceImpl implements PedidoService {
     private final PedidoRepository pedidoRepository;
     private final UsuarioRepository usuarioRepository;

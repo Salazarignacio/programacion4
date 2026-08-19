@@ -8,10 +8,12 @@ import com.gestor_pedidos.producto.ProductoEdit;
 import com.gestor_pedidos.repository.CategoriaRepository;
 import com.gestor_pedidos.repository.ProductoRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @AllArgsConstructor
+@Service
 public class ProductoServiceImpl implements ProductoService {
     private final ProductoRepository productoRepository;
     private final CategoriaRepository categoriaRepository;
