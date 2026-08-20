@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Guía de Creación de Objetos en Postman - Gestor de Pedidos API REST</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 30px;
+            color: #333;
+            line-height: 1.5;
+        }
+        h1 {
+            color: #1a5276;
+            border-bottom: 2px solid #1a5276;
+            padding-bottom: 8px;
+        }
+        h2 {
+            color: #2e86c1;
+            margin-top: 25px;
+            border-left: 4px solid #2e86c1;
+            padding-left: 10px;
+        }
+        h3 {
+            color: #2874a6;
+            margin-bottom: 5px;
+        }
+        .method {
+            font-weight: bold;
+            padding: 3px 8px;
+            border-radius: 4px;
+            color: white;
+            display: inline-block;
+        }
+        .post { background-color: #27ae60; }
+        .get { background-color: #2980b9; }
+        .put { background-color: #f39c12; }
+        .delete { background-color: #c0392b; }
+        .url {
+            font-family: monospace;
+            background-color: #f4f6f7;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid #d5dbdb;
+        }
+        pre {
+            background-color: #282c34;
+            color: #abb2bf;
+            padding: 12px;
+            border-radius: 6px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            overflow-x: auto;
+        }
+        .note {
+            background-color: #eaf2f8;
+            border-left: 4px solid #3498db;
+            padding: 10px 15px;
+            margin: 15px 0;
+            border-radius: 0 4px 4px 0;
+        }
+        .step {
+            font-weight: bold;
+            color: #1a5276;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Guía de Carga de Datos en Postman</h1>
+    <p><strong>Proyecto:</strong> Gestor de Pedidos (API REST - Spring Boot)</p>
+    <p><strong>Base de Datos:</strong> H2 en memoria (los datos se reinician al apagar/reiniciar el servidor).</p>
+
+    <div class="note">
+        <strong>Instrucciones de Uso en Postman:</strong><br>
+        1. Para los métodos <code>POST</code> y <code>PUT</code>, seleccionar el formato <strong>Body -> raw -> JSON</strong>.<br>
+        2. Seguir el orden de pasos indicado a continuación (primero Categorías y Usuarios, luego Productos, luego Pedidos y Detalles) para asegurar la integridad de IDs.
+    </div>
+
+    <h2>PASO 1: Crear Categorías (3)</h2>
+    <p><span class="method post">POST</span> <span class="url">http://localhost:8080/categoria</span></p>
+    
+    <h3>Categoría 1</h3>
+    <pre>{
+  "nombre": "Electrónica",
+  "descripcion": "Dispositivos electrónicos y tecnología"
+}</pre>
+
+    <h3>Categoría 2</h3>
+    <pre>{
+  "nombre": "Indumentaria",
+  "descripcion": "Ropa, calzado y accesorios"
+}</pre>
+
+    <h3>Categoría 3</h3>
+    <pre>{
+  "nombre": "Hogar",
+  "descripcion": "Artículos para el hogar y muebles"
+}</pre>
+
+    <div class="page-break" style="page-break-before: always;"></div>
+
+    <h2>PASO 2: Crear Usuarios (2)</h2>
+    <p><span class="method post">POST</span> <span class="url">http://localhost:8080/usuario</span></p>
+
+    <h3>Usuario 1 (Admin)</h3>
+    <pre>{
+  "nombre": "Ignacio",
+  "apellido": "Salazar",
+  "mail": "ignacio@gmail.com",
+  "celular": "3416050505",
+  "contrasenia": "123abc",
+  "rol": "ADMIN"
+}</pre>
+
+    <h3>Usuario 2 (Cliente)</h3>
+    <pre>{
+  "nombre": "Florencia",
+  "apellido": "Campora",
+  "mail": "flor@gmail.com",
+  "celular": "3416050506",
+  "contrasenia": "zxy789",
+  "rol": "USUARIO"
+}</pre>
+
+    <h2>PASO 3: Crear Productos (10)</h2>
+    <p><span class="method post">POST</span> <span class="url">http://localhost:8080/producto</span></p>
+
+    <h3>Productos 1 a 4 (Asociados a Categoría 1 - Electrónica)</h3>
+    <pre>{
+  "nombre": "Auriculares Bluetooth",
+  "precio": 15000.00,
+  "descripcion": "Auriculares inalámbricos con cancelación de ruido",
+  "stock": 15,
+  "imagen": "auriculares.jpg",
+  "disponible": true,
+  "IdCategoria": 1
+}</pre>
+    <pre>{
+  "nombre": "Smartwatch Pro",
+  "precio": 35000.00,
+  "descripcion": "Reloj inteligente con monitor de ritmo cardíaco",
+  "stock": 10,
+  "imagen": "smartwatch.jpg",
+  "disponible": true,
+  "IdCategoria": 1
+}</pre>
+    <pre>{
+  "nombre": "Teclado Mecánico RGB",
+  "precio": 25000.00,
+  "descripcion": "Teclado gamer switches azúl",
+  "stock": 8,
+  "imagen": "teclado.jpg",
+  "disponible": true,
+  "IdCategoria": 1
+}</pre>
+    <pre>{
+  "nombre": "Monitor 24 pulgadas",
+  "precio": 85000.00,
+  "descripcion": "Monitor Full HD IPS 75Hz",
+  "stock": 5,
+  "imagen": "monitor.jpg",
+  "disponible": true,
+  "IdCategoria": 1
+}</pre>
+
+    <div class="page-break" style="page-break-before: always;"></div>
+
+    <h3>Productos 5 a 7 (Asociados a Categoría 2 - Indumentaria)</h3>
+    <pre>{
+  "nombre": "Remera 100% Algodón",
+  "precio": 12000.00,
+  "descripcion": "Remera talle M manga corta",
+  "stock": 20,
+  "imagen": "remera.jpg",
+  "disponible": true,
+  "IdCategoria": 2
+}</pre>
+    <pre>{
+  "nombre": "Pantalón Jean Slim",
+  "precio": 28000.00,
+  "descripcion": "Jean denim elastizado",
+  "stock": 12,
+  "imagen": "jean.jpg",
+  "disponible": true,
+  "IdCategoria": 2
+}</pre>
+    <pre>{
+  "nombre": "Campera Térmica",
+  "precio": 55000.00,
+  "descripcion": "Campera de abrigo impermeable",
+  "stock": 6,
+  "imagen": "campera.jpg",
+  "disponible": true,
+  "IdCategoria": 2
+}</pre>
+
+    <h3>Productos 8 a 10 (Asociados a Categoría 3 - Hogar)</h3>
+    <pre>{
+  "nombre": "Lámpara LED Escritorio",
+  "precio": 8500.00,
+  "descripcion": "Lámpara táctil con regulación de brillo",
+  "stock": 25,
+  "imagen": "lampara.jpg",
+  "disponible": true,
+  "IdCategoria": 3
+}</pre>
+    <pre>{
+  "nombre": "Silla Ergonómica Oficina",
+  "precio": 65000.00,
+  "descripcion": "Silla ejecutiva con soporte lumbar",
+  "stock": 4,
+  "imagen": "silla.jpg",
+  "disponible": true,
+  "IdCategoria": 3
+}</pre>
+    <pre>{
+  "nombre": "Cafetera Express",
+  "precio": 45000.00,
+  "descripcion": "Cafetera automática presión 15 bares",
+  "stock": 7,
+  "imagen": "cafetera.jpg",
+  "disponible": true,
+  "IdCategoria": 3
+}</pre>
+
+    <div class="page-break" style="page-break-before: always;"></div>
+
+    <h2>PASO 4: Crear Pedidos (3)</h2>
+    <p><span class="method post">POST</span> <span class="url">http://localhost:8080/pedido?idUsuario=1</span></p>
+
+    <h3>Pedido 1 (Para Usuario 1, pago en Efectivo)</h3>
+    <p>URL: <code>http://localhost:8080/pedido?idUsuario=1</code></p>
+    <pre>"EFECTIVO"</pre>
+
+    <h3>Pedido 2 (Para Usuario 2, pago con Tarjeta)</h3>
+    <p>URL: <code>http://localhost:8080/pedido?idUsuario=2</code></p>
+    <pre>"TARJETA"</pre>
+
+    <h3>Pedido 3 (Para Usuario 2, pago por Transferencia)</h3>
+    <p>URL: <code>http://localhost:8080/pedido?idUsuario=2</code></p>
+    <pre>"TRANSFERENCIA"</pre>
+
+    <h2>PASO 5: Crear Detalles de Pedido</h2>
+    <p><span class="method post">POST</span> <span class="url">http://localhost:8080/detallepedido</span></p>
+
+    <h3>Detalle 1 (2 unidades del Producto 1)</h3>
+    <pre>{
+  "cantidad": 2,
+  "producto": { "id": 1 }
+}</pre>
+
+    <h3>Detalle 2 (1 unidad del Producto 5)</h3>
+    <pre>{
+  "cantidad": 1,
+  "producto": { "id": 5 }
+}</pre>
+
+    <h3>Detalle 3 (3 unidades del Producto 8)</h3>
+    <pre>{
+  "cantidad": 3,
+  "producto": { "id": 8 }
+}</pre>
+
+    <h2>PASO 6: Endpoints de Verificación Solicitados por la Consigna</h2>
+    <ul>
+        <li><span class="method get">GET</span> <code>http://localhost:8080/usuario/mail/ignacio@gmail.com</code> (Buscar Usuario por Mail)</li>
+        <li><span class="method get">GET</span> <code>http://localhost:8080/usuario/1</code> (Buscar Usuario por ID)</li>
+        <li><span class="method put">PUT</span> <code>http://localhost:8080/categoria/1</code> (Actualizar Categoría)</li>
+        <li><span class="method get">GET</span> <code>http://localhost:8080/swagger-ui/index.html</code> (Swagger UI interactivo)</li>
+    </ul>
+
+</body>
+</html>
