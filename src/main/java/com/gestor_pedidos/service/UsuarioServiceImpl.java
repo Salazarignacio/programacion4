@@ -46,4 +46,9 @@ public class UsuarioServiceImpl implements UsuarioService{
         usuario.setEliminado(true);
         usuarioRepository.save(usuario);
     }
+    @Override
+    public UsuarioDTO findByMail(String mail){
+        Usuario usuario = usuarioRepository.findByMail(mail).orElseThrow(()-> new NullPointerException("No se encontro usuario con mail: " + mail ));
+        return UsuarioDTO.toDTO(usuario);
+    }
 }

@@ -39,4 +39,8 @@ public class UsuarioController {
         usuarioService.deleteById(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/mail/{mail}")
+    public ResponseEntity<UsuarioDTO> findByMail(@PathVariable String mail){
+        return ResponseEntity.ok(usuarioService.findByMail(mail));
+    }
 }
