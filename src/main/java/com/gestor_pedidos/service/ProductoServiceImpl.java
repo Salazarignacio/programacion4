@@ -39,7 +39,7 @@ public class ProductoServiceImpl implements ProductoService {
     public ProductoDTO update(ProductoEdit productoEdit, Long id){
     Producto prod = productoRepository.findById(id).orElseThrow(()-> new NullPointerException("No se encontro producto con ID: " + id));
     Categoria cat = null;
-    if(prod.getCategoria() != null){
+    if(productoEdit.categoria() != null){
         cat = categoriaRepository.findById(productoEdit.categoria().getId()).orElseThrow(()-> new NullPointerException("No se encontro categoria con ID: " + productoEdit.categoria().getId()));
     }
     productoEdit.applyTo(prod, cat);

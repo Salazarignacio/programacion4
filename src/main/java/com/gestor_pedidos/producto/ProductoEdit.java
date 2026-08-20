@@ -1,6 +1,5 @@
 package com.gestor_pedidos.producto;
 
-import com.gestor_pedidos.categoria.CategoriaDTO;
 import com.gestor_pedidos.entities.Categoria;
 import com.gestor_pedidos.entities.Producto;
 

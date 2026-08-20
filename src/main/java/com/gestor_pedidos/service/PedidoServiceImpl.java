@@ -4,6 +4,7 @@ import com.gestor_pedidos.entities.Pedido;
 import com.gestor_pedidos.entities.Usuario;
 import com.gestor_pedidos.enums.FormaPago;
 import com.gestor_pedidos.pedido.PedidoDTO;
+import com.gestor_pedidos.pedido.PedidoEdit;
 import com.gestor_pedidos.repository.PedidoRepository;
 import com.gestor_pedidos.repository.UsuarioRepository;
 import lombok.AllArgsConstructor;
@@ -35,9 +36,14 @@ public class PedidoServiceImpl implements PedidoService {
         return pedidos.stream().map(PedidoDTO::toDTO).toList();
     }
     @Override
-    public PedidoDTO update(Pedido pedido, Long id){
+    public PedidoDTO update(PedidoEdit pedidoEdit, Long id){
         Pedido pedidoEncontrado = pedidoRepository.findById(id).orElseThrow(()-> new NullPointerException("No se encontro pedido con ID: " + id));
-        pedidoEncontrado = pedidoRepository.save(pedido);
+        Usuario usuario = null;
+        if(pedidoEdit.usuario()!=null){
+            usuario = usuarioRepository.findById(pedidoEdit.usuario().getId()).orElseThrow(()->new NullPointerException("No se encontro usuario con ID" + pedidoEdit.usuario().getId()));
+        }
+        pedidoEdit.applyTo(pedidoEncontrado, usuario);
+        pedidoEncontrado = pedidoRepository.save(pedidoEncontrado);
         return  PedidoDTO.toDTO(pedidoEncontrado);
     }
     @Override

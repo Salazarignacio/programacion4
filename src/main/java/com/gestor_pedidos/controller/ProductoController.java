@@ -2,6 +2,7 @@ package com.gestor_pedidos.controller;
 
 import com.gestor_pedidos.producto.ProductoCreate;
 import com.gestor_pedidos.producto.ProductoDTO;
+import com.gestor_pedidos.producto.ProductoEdit;
 import com.gestor_pedidos.service.ProductoService;
 import lombok.RequiredArgsConstructor;
 import org.apache.coyote.Response;
@@ -25,11 +26,20 @@ public class ProductoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ProductoDTO> findById(@PathVariable Long id){
+    public ResponseEntity<ProductoDTO> findById(@PathVariable Long id) {
         return ResponseEntity.ok(productoService.findById(id));
     }
     @GetMapping
     public ResponseEntity<List<ProductoDTO>> findAll(){
         return ResponseEntity.ok(productoService.findAll());
+    }
+    @PutMapping("/{id}")
+    public ResponseEntity<ProductoDTO> update(@RequestBody ProductoEdit productoEdit, @PathVariable Long id){
+        return ResponseEntity.ok(productoService.update(productoEdit, id));
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+        productoService.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
 }
